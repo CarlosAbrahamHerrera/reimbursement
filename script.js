@@ -1,41 +1,61 @@
 document.addEventListener('DOMContentLoaded', function () {
-    /* Select New Request Button and Options */
-    var newRequestButton = document.querySelector('.new-request');
-    var requestOptions = document.querySelector('.new-request-options');
+    // New Request Tab and Options
+    const newRequestButton = document.querySelector('.new-request');
+    const requestOptions = document.querySelector('.new-request-options');
+    const statusMessage = document.querySelector('#status-message');
+    const tabs = document.querySelectorAll('.tabs button');
+    const requestOptionButtons = document.querySelectorAll('.request-option');
 
-    /* Select all tabs and the status message element */
-    var tabs = document.querySelectorAll('.tabs button'); /* Select all tab buttons */
-    var statusMessage = document.querySelector('#status-message'); /* Select status message element */
-
-    /* Toggle visibility of New Request options when the "New Request" tab is clicked */
+    // Toggle New Request Options
     newRequestButton.addEventListener('click', function (event) {
-        event.stopPropagation(); /* Prevent other event handlers from triggering */
+        event.stopPropagation();
         requestOptions.style.display = requestOptions.style.display === 'none' || !requestOptions.style.display ? 'block' : 'none';
-        statusMessage.style.display = 'none'; /* Ensure the status message is hidden */
+        statusMessage.style.display = 'none';
     });
 
-    /* Handle clicks on Active, Approved, and Closed tabs */
+    // Handle Other Tabs
     tabs.forEach(function (tab) {
-        if (!tab.classList.contains('new-request')) { /* Exclude the "New Request" tab */
+        if (!tab.classList.contains('new-request')) {
             tab.addEventListener('click', function () {
-                requestOptions.style.display = 'none'; /* Hide the request options */
-                statusMessage.style.display = 'block'; /* Show the status message */
+                requestOptions.style.display = 'none';
+                statusMessage.style.display = 'block';
             });
         }
     });
 
-    /* Add toggle functionality to all <summary> elements inside <details> */
+    // Details Toggle
     document.querySelectorAll('details summary').forEach(function (summary) {
-        summary.addEventListener('click', function () {
-            var details = this.parentElement;
-            var isOpen = details.open;
-            details.open = !isOpen; /* Toggle open state of <details> */
+        summary.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default summary behavior
+            const details = this.parentElement;
+            details.toggleAttribute('open');
         });
     });
 
-    /* Add functionality for the "Deferred Tuition (DT)" button */
-    var deferredTuitionButton = document.querySelector('.request-option:nth-child(5)'); /* Select the 5th button specifically */
-    deferredTuitionButton.addEventListener('click', function () {
-        alert('Deferred Tuition details will go here.'); /* Replace with your logic */
+    // Request Option Buttons Handling
+    requestOptionButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const requestType = this.textContent.trim();
+            alert(`You selected: ${requestType}`);
+            
+            // Optional: You can add more specific logic here
+            switch(requestType) {
+                case 'Book Reimbursement':
+                    console.log('Book Reimbursement clicked');
+                    break;
+                case 'Tuition Reimbursement':
+                    console.log('Tuition Reimbursement clicked');
+                    break;
+                case 'Professional Expense':
+                    console.log('Professional Expense clicked');
+                    break;
+                case 'Direct Payment Program':
+                    console.log('Direct Payment Program clicked');
+                    break;
+                case 'Deferred Tuition (DT)':
+                    console.log('Deferred Tuition clicked');
+                    break;
+            }
+        });
     });
 });
