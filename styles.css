@@ -1,5 +1,5 @@
 /* Reset styles for the whole page */
-html, body, h1, h2, div, p, summary, button, details {
+html, body, h1, h2, nav, ul, li, section, article, p, summary, button, details, footer {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,7 +8,7 @@ html, body, h1, h2, div, p, summary, button, details {
 /* General page styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #F8F2E9; /* Color for the area outside the main content box */
+    background-color: #F8F2E9; /* Background color outside the main content */
     color: black; /* Default text color */
     margin: 0;
     padding: 0;
@@ -18,27 +18,44 @@ body {
     align-items: center;
 }
 
-#app {
+main {
     width: 90%;
     max-width: 1200px; /* Maximum width */
     margin: 20px;
     padding: 20px;
-    background-color: #FEFEFD; /* Color for the main content box */
+    background-color: #FEFEFD; /* Background for main content */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabs-container {
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+/* Tabs container */
+nav.tabs-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .tabs {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    border-bottom: 1px solid #ccc; /* Horizontal line under the buttons */
+    list-style-type: none;
+    padding: 0;
+    border-bottom: 1px solid #ccc; /* Horizontal line under the tabs */
 }
 
 .tabs button {
@@ -61,68 +78,21 @@ body {
     background-color: #F6CA9E; /* Match the background color of other buttons */
 }
 
-/* Styles for the <details> and <summary> elements */
-.info details {
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    margin-bottom: 10px; /* Space between sections */
-}
-
-.info summary {
-    background-color: #F6CA9E; /* Color for the summary elements */
-    color: black; /* Text color for the summary elements */
-    padding: 10px;
-    cursor: pointer;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-}
-
-/* Style for the disclosure widget (caret) */
-.info summary::-webkit-details-marker {
-    display: none; /* Hide the default caret icon */
-}
-
-/* Adding a custom caret with pseudo-elements */
-.info summary::before {
-    content: '▼';
-    float: right;
-    font-size: 1.1em;
-    line-height: 0;
-    margin-top: 2px;
-    margin-right: 5px;
-    transition: transform 0.2s ease-in-out;
-}
-
-/* Rotate the custom caret when details are open */
-.info[open] summary::before {
-    transform: rotate(180deg);
-}
-
-/* Styles for the details content */
-.info-content, .info p {
-    color: black; /* Text color for content inside <details> */
-    padding: 10px;
-    margin: 0;
-    border-top: 1px solid #eee; /* Separator */
-    background-color: #FEFEFD; /* Background for content */
-}
-
-/* Styles for the 'No Application Available' message */
+/* Status message */
 #status-message {
     display: none;
     padding: 10px;
     background-color: #FEFEFD;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-top: 10px; /* Space after tabs */
+    margin-top: 10px;
     text-align: center;
 }
 
-/* Styles for the new request options */
+/* New Request Options */
 .new-request-options {
-    display: none; /* Hidden by default; shown when New Request is clicked */
+    display: none;
+    margin-bottom: 20px;
 }
 
 .new-request-options button {
@@ -142,7 +112,60 @@ body {
 .new-request-options button:hover {
     background-color: #E7651B;
 }
-.tabs button.active:hover {
+
+/* Info container */
+#info-container {
+    margin-top: 20px;
+}
+
+#info-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+/* Styles for the <details> and <summary> elements */
+.info details {
+    margin-bottom: 10px; /* Space between details elements */
+}
+
+.info summary {
+    background-color: #F6CA9E;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.info summary:hover {
     background-color: #E7651B;
-    color: black; /* Text color on hover for the active button */
+}
+
+.info summary::marker {
+    display: none; /* Hide the default marker */
+}
+
+.info summary::before {
+    content: '▼';
+    float: right;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.info[open] summary::before {
+    transform: rotate(180deg);
+}
+
+.info p {
+    padding: 10px;
+    background-color: #FEFEFD;
+    border-top: 1px solid #eee;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
 }
